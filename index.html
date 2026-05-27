@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>文毅施 Moriah Man</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* Hero / Dark tones — warm espresso taupe */
+      --navy:       #2a1e13;
+      --royal:      #3d2d1c;
+      --sapphire:   #2a5aad;
+      --sky:        #d6e4f7;
+      --sky-light:  #edf3fb;
+
+      /* Taupes / Browns */
+      --umber:      #5c4a37;
+      --taupe:      #8c7b68;
+      --sand:       #c4b49e;
+      --linen:      #ede6da;
+      --parchment:  #f7f3ed;
+
+      /* Neutrals */
+      --white:      #ffffff;
+      --text:       #1e1812;
+      --muted:      #7a6e65;
+      --border:     rgba(140,123,104,0.2);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--parchment);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ─── HERO — slim horizontal strip ────────────────────── */
+    .hero {
+      width: 100%;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 24px 18px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 120% at 0% 50%,  rgba(180,130,75,0.14) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 100% at 100% 50%, rgba(60,30,10,0.35)  0%, transparent 50%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(196,180,158,0.35), transparent);
+    }
+
+    .avatar-wrap {
+      position: relative;
+      width: 72px;
+      height: 72px;
+      flex-shrink: 0;
+      z-index: 1;
+    }
+    .avatar-ring {
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--umber), var(--sand));
+    }
+    .avatar {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: var(--royal);
+      border: 2px solid var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      color: var(--sand);
+      overflow: hidden;
+    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+
+    .hero-info {
+      z-index: 1;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 20px;
+      letter-spacing: 0.03em;
+      color: var(--white);
+      line-height: 1.2;
+    }
+    .hero h1 em {
+      display: block;
+      font-style: normal;
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      color: var(--sand);
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+    .hero .tagline {
+      font-size: 11px;
+      color: rgba(196,180,158,0.7);
+      font-weight: 300;
+      letter-spacing: 0.03em;
+      line-height: 1.5;
+    }
+
+    /* ─── MAIN CONTENT ──────────────────────────────────── */
+    .page {
+      width: 100%;
+      max-width: 480px;
+      padding: 24px 18px 56px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* ─── SECTION LABEL ─────────────────────────────────── */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .section-label span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      white-space: nowrap;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--sand), transparent);
+      opacity: 0.6;
+    }
+
+    /* ─── CONTACT BUTTONS ────────────────────────────────── */
+    .btn-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 14px 14px 12px;
+      border-radius: 14px;
+      text-decoration: none;
+      background: var(--white);
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 4px rgba(21,37,64,0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn::after {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; right: 0;
+      height: 3px;
+      background: var(--sapphire);
+      border-radius: 14px 14px 0 0;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(21,37,64,0.1); border-color: rgba(42,90,173,0.25); }
+    .btn:hover::after { opacity: 1; }
+    .btn:active { transform: translateY(0); }
+
+    .btn-icon {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      flex-shrink: 0;
+    }
+    .icon-wa   { background: var(--sky-light); }
+    .icon-cal  { background: #edf0f9; }
+    .icon-star { background: var(--linen); }
+    .icon-mail { background: #ede8df; }
+
+    /* Taupe-toned button variant */
+    .btn-taupe::after { background: var(--umber); }
+    .btn-taupe:hover  { border-color: rgba(92,74,55,0.28); }
+
+    .btn-text strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+    .btn-text small {
+      font-size: 11px;
+      color: var(--taupe);
+      font-weight: 300;
+    }
+
+    .btn-arrow { display: none; }
+
+    /* ─── BUSINESS CONTACT TOGGLE ───────────────────────── */
+    .contact-trigger {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 15px 18px;
+      border-radius: 14px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 4px rgba(21,37,64,0.05);
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-trigger::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; right: 0;
+      height: 3px;
+      background: var(--umber);
+      border-radius: 14px 14px 0 0;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .contact-trigger:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(21,37,64,0.08); border-color: rgba(92,74,55,0.3); }
+    .contact-trigger:hover::before { opacity: 1; }
+    .contact-trigger.open { border-color: rgba(92,74,55,0.35); border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom-color: transparent; }
+    .contact-trigger.open::before { opacity: 1; }
+
+    .trigger-icon {
+      width: 42px; height: 42px;
+      border-radius: 12px;
+      background: var(--linen);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .trigger-text strong { display: block; font-size: 14px; font-weight: 500; color: var(--navy); }
+    .trigger-text small  { font-size: 12px; color: var(--taupe); font-weight: 300; }
+    .trigger-chevron {
+      margin-left: auto;
+      font-size: 16px;
+      color: var(--taupe);
+      transition: transform 0.25s ease;
+      flex-shrink: 0;
+    }
+    .contact-trigger.open .trigger-chevron { transform: rotate(180deg); }
+
+    .contact-sub {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      border: 1px solid rgba(92,74,55,0.35);
+      border-top: none;
+      border-radius: 0 0 14px 14px;
+    }
+    .contact-sub.open { max-height: 120px; }
+
+    .sub-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      padding: 14px 14px 12px;
+      text-decoration: none;
+      background: var(--parchment);
+      transition: background 0.18s ease;
+    }
+    .sub-btn:first-child { border-right: 1px solid rgba(92,74,55,0.15); border-radius: 0 0 0 14px; }
+    .sub-btn:last-child  { border-radius: 0 0 14px 0; }
+    .sub-btn:hover { background: var(--linen); }
+
+    .sub-icon {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px;
+    }
+    .sub-btn strong { font-size: 12px; font-weight: 500; color: var(--navy); line-height: 1.3; }
+    .sub-btn small  { font-size: 10px; color: var(--taupe); }
+
+    /* ─── DISCOUNT CODE BADGE ───────────────────────────── */
+    .code-off {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--umber);
+      background: var(--linen);
+      border-radius: 6px;
+      padding: 2px 7px;
+      margin-left: 6px;
+    }
+
+    /* ─── BOOK CLUB CARD ─────────────────────────────────── */
+    .card-club {
+      border-radius: 20px;
+      background: var(--navy);
+      padding: 30px 26px;
+      position: relative;
+      overflow: hidden;
+      color: var(--white);
+    }
+    .card-club::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 65% 55% at 0% 0%,   rgba(180,130,75,0.2)  0%, transparent 55%),
+        radial-gradient(ellipse 55% 55% at 100% 100%, rgba(60,30,10,0.45) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* decorative quotation mark */
+    .card-club-deco {
+      position: absolute;
+      right: 22px; top: 12px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 100px;
+      line-height: 1;
+      color: rgba(255,255,255,0.05);
+      font-style: italic;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .card-club .card-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--sand);
+      font-weight: 500;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .card-club h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px;
+      font-weight: 400;
+      color: var(--white);
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+      font-style: italic;
+      position: relative;
+    }
+    .card-club p {
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(237,230,218,0.75);
+      margin-bottom: 22px;
+      max-width: 270px;
+      position: relative;
+    }
+
+    .btn-club {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      color: var(--navy);
+      padding: 12px 22px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      position: relative;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .btn-club:hover { background: var(--linen); transform: translateY(-1px); }
+
+    /* ─── DISCOUNT CODES CARD ───────────────────────────── */
+    .card-codes {
+      border-radius: 20px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 24px;
+      box-shadow: 0 2px 12px rgba(21,37,64,0.05);
+    }
+    .card-codes .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--linen);
+    }
+    .code-icon {
+      width: 44px; height: 44px;
+      background: var(--sky-light);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+    .card-codes h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--navy);
+    }
+    .card-codes .card-header p { font-size: 12px; color: var(--taupe); }
+
+    .code-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .code-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--parchment);
+      border-radius: 10px;
+      padding: 11px 14px;
+    }
+    .code-brand {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--navy);
+    }
+    .code-pill {
+      background: var(--sky-light);
+      border: 1px dashed rgba(42,90,173,0.4);
+      border-radius: 8px;
+      padding: 4px 11px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--sapphire);
+      letter-spacing: 0.07em;
+      font-family: monospace;
+    }
+
+    .see-all-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--sapphire);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(42,90,173,0.2);
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .see-all-link:hover { background: var(--sky-light); border-color: rgba(42,90,173,0.4); }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 16px 24px 40px;
+      font-size: 12px;
+      color: var(--taupe);
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 360px) {
+      .hero { padding: 16px 16px 14px; gap: 12px; }
+      .avatar-wrap { width: 60px; height: 60px; }
+      .hero h1 { font-size: 17px; }
+      .page { padding: 18px 14px 48px; gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="avatar-wrap">
+      <div class="avatar-ring"></div>
+      <div class="avatar">
+        <img src="moriah.jpg" alt="Moriah Man" style="width:100%;height:100%;object-fit:cover;object-position:center top;" />
+      </div>
+    </div>
+    <div class="hero-info">
+      <h1>文毅施 Moriah Man<em>From Hong Kong &nbsp;+852</em></h1>
+      <p class="tagline">Redefining success through health, balance &amp; growth</p>
+      <p class="tagline">Physio Rehab &nbsp;·&nbsp; Books Sharing &nbsp;·&nbsp; Healthy Lifestyle</p>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <main class="page">
+
+    <!-- BRAND DEALS & COLLABS -->
+    <section>
+      <div class="section-label"><span>Brand Deals &amp; Collabs · 品牌合作</span></div>
+
+      <button class="contact-trigger" id="contactToggle" onclick="toggleContact()" aria-expanded="false">
+        <div class="trigger-icon">🤝</div>
+        <div class="trigger-text">
+          <strong>Business Contact · 商業聯繫</strong>
+          <small>Reach out to work together</small>
+        </div>
+        <span class="trigger-chevron">⌄</span>
+      </button>
+
+      <div class="contact-sub" id="contactSub">
+        <a href="https://wa.me/85253388224" class="sub-btn" target="_blank" rel="noopener">
+          <!-- Replace 85253388224 with your WhatsApp number, e.g. 85291234567 -->
+          <div class="sub-icon" style="background:var(--linen);">💬</div>
+          <strong>Business WhatsApp · 商業查詢</strong>
+          <small>Send a message</small>
+        </a>
+        <a href="mailto:moriahphysio@gmail.com" class="sub-btn">
+          <!-- Replace moriahphysio@gmail.com with your work email -->
+          <div class="sub-icon" style="background:#ede8df;">📩</div>
+          <strong>Work Email · 工作電郵</strong>
+          <small>Professional enquiries</small>
+        </a>
+      </div>
+
+    </section>
+
+    <!-- FOR CONSULTATION -->
+    <section>
+      <div class="section-label"><span>For Consultation · 諮詢預約</span></div>
+      <div class="btn-grid">
+
+        <a href="https://wa.me/85253388224?text=%E6%88%91%E6%83%B3%E4%BA%86%E8%A7%A3%E6%9B%B4%E5%A4%9A%E7%89%A9%E7%90%86%E6%B2%BB%E7%99%82%E6%9C%8D%E5%8B%99%20I%20want%20to%20know%20more%20about%20physio%20treatment" class="btn" target="_blank" rel="noopener">
+          <!-- Replace 85253388224 with your WhatsApp number, e.g. 85291234567 -->
+          <div class="btn-icon icon-cal">🗓️</div>
+          <div class="btn-text">
+            <strong>Book a Physio Session<br>預約物理治療</strong>
+            <small>Schedule an appointment</small>
+          </div>
+        </a>
+
+        <a href="https://wa.me/85253388224?text=%E6%88%91%E6%83%B3%E4%BA%86%E8%A7%A3%E6%9B%B4%E5%A4%9A%E9%A0%90%E9%98%B2%E6%80%A7%E5%8A%9F%E8%83%BD%E8%A8%93%E7%B7%B4" class="btn" target="_blank" rel="noopener">
+          <div class="btn-icon" style="background:#eaf0e8; width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:17px;">🏃</div>
+          <div class="btn-text">
+            <strong>Prehab Training<br>預防功能性訓練</strong>
+            <small>Students · Adult · Seniors 65+</small>
+          </div>
+        </a>
+
+        <a href="https://www.notion.so/MORphyiotips-3568c80ae2fb801bab53c1394d202649?source=copy_link" class="btn" target="_blank" rel="noopener" style="grid-column: 1 / -1; flex-direction: row; align-items: center; gap: 14px;">
+          <div style="background:#f0ece4; width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:17px; flex-shrink:0;">📋</div>
+          <div>
+            <strong style="display:block; font-size:13px; font-weight:500; color:var(--navy); line-height:1.3;">MORphysiotips · 物理治療免費資源</strong>
+            <small style="font-size:11px; color:var(--taupe);">Check the latest free notes from Moriah</small>
+          </div>
+          <span style="margin-left:auto; color:var(--taupe); font-size:16px; opacity:0.5;">›</span>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- BOOK CLUB — coming soon -->
+
+    <!-- DISCOUNT CODES -->
+    <section>
+      <div class="section-label"><span>Discount Codes · 優惠碼</span></div>
+      <div class="card-codes">
+        <div class="card-header">
+          <div class="code-icon">🏷️</div>
+          <div>
+            <h3>Exclusive Codes · 專屬優惠</h3>
+            <p>Save with my personal discount codes</p>
+          </div>
+        </div>
+
+        <div class="code-list">
+          <!-- Add / edit your codes below. Duplicate a .code-item block for each brand. -->
+          <a href="https://barefoot.asia/" class="code-item" target="_blank" rel="noopener" style="text-decoration:none;">
+            <span class="code-brand">Barefoot Asia 赤足鞋 <span class="code-off">10% off</span></span>
+            <span class="code-pill">MO1IYA</span>
+          </a>
+        </div>
+
+        <a href="YOUR_CODES_PAGE_LINK" class="see-all-link" target="_blank" rel="noopener">
+          <!-- Optional: link to a full codes page -->
+          See all codes &nbsp;›
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 &nbsp;文毅施 Moriah Man
+  </footer>
+
+  <script>
+    function toggleContact() {
+      const btn = document.getElementById('contactToggle');
+      const sub = document.getElementById('contactSub');
+      const open = btn.classList.toggle('open');
+      sub.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open);
+    }
+  </script>
+</body>
+</html>
