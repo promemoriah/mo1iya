@@ -524,6 +524,7 @@
       <h1>文毅施 Moriah Man<em>From Hong Kong</em></h1>
       <p class="tagline">Redefining success through health, balance &amp; growth</p>
       <p class="tagline">Physio Rehab &nbsp;·&nbsp; Book Sharing &nbsp;·&nbsp; Healthy Lifestyle</p>
+      <p class="tagline" style="margin-top:4px; opacity:0.6;">📍 Total Health, Hong Kong Sports Clinic, Central, HK</p>
     </div>
   </div>
 
@@ -562,13 +563,25 @@
       <div class="section-label"><span>For Consultation · 諮詢預約</span></div>
       <div class="btn-grid">
 
-        <a href="https://wa.me/85253388224?text=%E6%88%91%E6%83%B3%E4%BA%86%E8%A7%A3%E6%9B%B4%E5%A4%9A%E7%89%A9%E7%90%86%E6%B2%BB%E7%99%82%E6%9C%8D%E5%8B%99%20I%20want%20to%20know%20more%20about%20physio%20treatment" class="btn" target="_blank" rel="noopener">
-          <!-- Replace 85253388224 with your WhatsApp number, e.g. 85291234567 -->
-          <div class="btn-text">
-            <strong>Book a Physio Session<br>預約物理治療</strong>
-            <small>Schedule an appointment</small>
+        <div style="grid-column: 1 / -1;">
+          <button class="contact-trigger" id="physioToggle" onclick="togglePhysio()" aria-expanded="false" style="margin-bottom:0;">
+            <div class="trigger-text">
+              <strong>Book a Physio Session<br>預約物理治療</strong>
+              <small>Choose how to reach us</small>
+            </div>
+            <span class="trigger-chevron">⌄</span>
+          </button>
+          <div class="contact-sub" id="physioSub">
+            <a href="https://wa.me/85253388224?text=%E6%88%91%E6%83%B3%E4%BA%86%E8%A7%A3%E6%9B%B4%E5%A4%9A%E7%89%A9%E7%90%86%E6%B2%BB%E7%99%82%E6%9C%8D%E5%8B%99%20I%20want%20to%20know%20more%20about%20physio%20treatment" class="sub-btn" target="_blank" rel="noopener">
+              <strong>WhatsApp</strong>
+              <small>Message directly</small>
+            </a>
+            <a href="mailto:moriah.man@hongkongsportsclinic.com" class="sub-btn">
+              <strong>Clinic Email</strong>
+              <small>moriah.man@hongkongsportsclinic.com</small>
+            </a>
           </div>
-        </a>
+        </div>
 
         <a href="https://wa.me/85253388224?text=%E6%88%91%E6%83%B3%E4%BA%86%E8%A7%A3%E6%9B%B4%E5%A4%9A%E9%A0%90%E9%98%B2%E6%80%A7%E5%8A%9F%E8%83%BD%E8%A8%93%E7%B7%B4" class="btn" target="_blank" rel="noopener">
           <div class="btn-text">
@@ -622,6 +635,13 @@
     function toggleContact() {
       const btn = document.getElementById('contactToggle');
       const sub = document.getElementById('contactSub');
+      const open = btn.classList.toggle('open');
+      sub.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open);
+    }
+    function togglePhysio() {
+      const btn = document.getElementById('physioToggle');
+      const sub = document.getElementById('physioSub');
       const open = btn.classList.toggle('open');
       sub.classList.toggle('open', open);
       btn.setAttribute('aria-expanded', open);
