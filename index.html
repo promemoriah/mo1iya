@@ -590,13 +590,25 @@
           </div>
         </a>
 
-        <a href="https://www.notion.so/MORphyiotips-3568c80ae2fb801bab53c1394d202649?source=copy_link" class="btn" target="_blank" rel="noopener" style="grid-column: 1 / -1; flex-direction: row; align-items: center; gap: 14px;">
-          <div>
-            <strong style="display:block; font-size:13px; font-weight:500; color:var(--navy); line-height:1.3;">MORphysiotips · 物理治療免費資源</strong>
-            <small style="font-size:11px; color:var(--taupe);">Check the latest free notes from Moriah</small>
+        <div style="grid-column: 1 / -1;">
+          <button class="contact-trigger" id="notesToggle" onclick="toggleNotes()" aria-expanded="false">
+            <div class="trigger-text">
+              <strong>MORphysiotips · 物理治療免費資源</strong>
+              <small>Check the latest free notes from Moriah</small>
+            </div>
+            <span class="trigger-chevron">⌄</span>
+          </button>
+          <div class="contact-sub" id="notesSub" style="grid-template-columns: 1fr;">
+            <a href="https://www.notion.so/MORphyiotips-1-3758c80ae2fb80b0ae22c30e29abf60f?source=copy_link" class="sub-btn" target="_blank" rel="noopener" style="border-right:none; border-bottom: 1px solid rgba(92,74,55,0.15); border-radius:0;">
+              <strong>MORphysiotips</strong>
+              <small>All free physio notes</small>
+            </a>
+            <a href="https://www.notion.so/3568c80ae2fb801bab53c1394d202649?source=copy_link" class="sub-btn" target="_blank" rel="noopener" style="border-radius: 0 0 14px 14px;">
+              <strong>養出更健康的大腦</strong>
+              <small>Latest note</small>
+            </a>
           </div>
-          <span style="margin-left:auto; color:var(--taupe); font-size:16px; opacity:0.5;">›</span>
-        </a>
+        </div>
 
       </div>
     </section>
@@ -642,6 +654,13 @@
     function togglePhysio() {
       const btn = document.getElementById('physioToggle');
       const sub = document.getElementById('physioSub');
+      const open = btn.classList.toggle('open');
+      sub.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open);
+    }
+    function toggleNotes() {
+      const btn = document.getElementById('notesToggle');
+      const sub = document.getElementById('notesSub');
       const open = btn.classList.toggle('open');
       sub.classList.toggle('open', open);
       btn.setAttribute('aria-expanded', open);
